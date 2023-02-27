@@ -15,11 +15,6 @@ namespace IO2Workshop
                 return 0;
             }
 
-            int res = 0;
-            if(Int32.TryParse(str, out res))
-            {
-                return res;
-            }
 
             //if (str.Contains(','))
             //{
@@ -47,9 +42,9 @@ namespace IO2Workshop
 
             int sum = 0;
             string[] splitted;
-            if (str.Substring(0, 2) == "//")
+            if (str.Length>3 && str.Substring(0, 2) == "//")
             {
-                 splitted = str.Substring(4).Split(',', '\n', str[3]);
+                 splitted = str.Substring(3).Split(',', '\n', str[2]);
             }
             else
             {
@@ -58,6 +53,10 @@ namespace IO2Workshop
             }
             foreach (var item in splitted)
             {
+                if(item== string.Empty)
+                {
+                    continue;
+                }
                 int val = int.Parse(item);
                 if (val < 0)
                     throw new ArgumentException();

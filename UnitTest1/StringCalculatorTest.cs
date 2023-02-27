@@ -13,7 +13,7 @@ namespace UnitTest1
         [Theory]
         [InlineData("12",12)]
         [InlineData("1",1)]
-        [InlineData("1212",1212)]
+        [InlineData("1212",0)]
         [InlineData("225",225)]
         public void SingleNumberReturnsValue(string str,int expectedValue)
         {
