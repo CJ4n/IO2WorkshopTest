@@ -1,0 +1,33 @@
+
+name: .NET Yests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - uses: actions/catche@v2
+      with:
+        path: ~/nuget/packages
+        key: ${{runner.os}}-nuget-${{hashFiles('**packages.lock.json')}}
+        restore-keys: |
+          ${{runner.os}}-nuget
+    - name: restore dependencies
+        working-directory: ./UnitTest1
+        run: dotnet --build --no-restore
+    - name: 
+        
+
+  
